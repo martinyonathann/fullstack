@@ -41,7 +41,7 @@ func (p *Post) Validate() error {
 	return nil
 }
 
-func (p *Post) savePost(db *gorm.DB) (*Post, error) {
+func (p *Post) SavePost(db *gorm.DB) (*Post, error) {
 	var err error
 	err = db.Debug().Model(&Post{}).Create(&p).Error
 	if err != nil {

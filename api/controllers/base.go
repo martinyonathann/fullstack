@@ -1,5 +1,4 @@
-//create Controllers
-package Controllers
+package controllers
 
 import (
 	"fmt"
