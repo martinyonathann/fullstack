@@ -30,7 +30,7 @@ var posts = []models.Post{
 	},
 }
 
-func load(db *gorm.DB) {
+func Load(db *gorm.DB) {
 	err := db.Debug().DropTableIfExists(&models.Post{}, &models.User{}).Error
 	if err != nil {
 		log.Fatalf("cannot drop table : %v", err)
