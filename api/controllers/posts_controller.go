@@ -56,8 +56,10 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusCreated, postCreated)
 }
 
-func (server *Server) getPosts(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
+
 	post := models.Post{}
+
 	posts, err := post.FindAllPosts(server.DB)
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
@@ -66,7 +68,8 @@ func (server *Server) getPosts(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, posts)
 }
 
-func (server *Server) getPost(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
+
 	vars := mux.Vars(r)
 	pid, err := strconv.ParseUint(vars["id"], 10, 64)
 	if err != nil {

@@ -140,7 +140,7 @@ func TestGetPosts(t *testing.T) {
 		t.Errorf("this is the error: %v\n", err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(server.getPosts)
+	handler := http.HandlerFunc(server.GetPosts)
 	handler.ServeHTTP(rr, req)
 
 	var posts []models.Post
@@ -188,7 +188,7 @@ func TestGetPostByID(t *testing.T) {
 		req = mux.SetURLVars(req, map[string]string{"id": v.id})
 
 		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(server.getPost)
+		handler := http.HandlerFunc(server.GetPost)
 		handler.ServeHTTP(rr, req)
 
 		responseMap := make(map[string]interface{})

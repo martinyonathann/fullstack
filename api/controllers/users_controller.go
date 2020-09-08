@@ -15,6 +15,7 @@ import (
 	"github.com/martinyonathann/fullstack/api/utils/formaterror"
 )
 
+//CreateUser for create User
 func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -46,6 +47,7 @@ func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusCreated, userCreated)
 }
 
+//GetUsers for get User
 func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 	user := models.User{}
 
@@ -57,6 +59,7 @@ func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, users)
 }
 
+//UpdateUser for update user
 func (server *Server) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	uid, err := strconv.ParseUint(vars["id"], 10, 32)
@@ -99,6 +102,7 @@ func (server *Server) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, updatedUser)
 }
 
+//DeleteUser is fuction for delete user
 func (server *Server) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	user := models.User{}

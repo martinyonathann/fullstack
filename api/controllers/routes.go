@@ -18,8 +18,8 @@ func (s *Server) initializeRoutes() {
 
 	//Post Routes
 	s.Router.HandleFunc("/posts", middlewares.SetMiddlewareJSON(s.CreatePost)).Methods("POST")
-	s.Router.HandleFunc("/posts", middlewares.SetMiddlewareJSON(s.getPosts)).Methods("GET")
-	s.Router.HandleFunc("/posts/{id}", middlewares.SetMiddlewareJSON(s.getPosts)).Methods("GET")
+	s.Router.HandleFunc("/posts", middlewares.SetMiddlewareJSON(s.GetPosts)).Methods("GET")
+	s.Router.HandleFunc("/posts/{id}", middlewares.SetMiddlewareJSON(s.GetPosts)).Methods("GET")
 	s.Router.HandleFunc("/posts/{id}", middlewares.SetMiddlewareJSON(middlewares.SetMiddlewareAuthentication(s.UpdatePost))).Methods("PUT")
 	s.Router.HandleFunc("/posts/{id}", middlewares.SetMiddlewareJSON(s.DeletePost)).Methods("DELETE")
 
