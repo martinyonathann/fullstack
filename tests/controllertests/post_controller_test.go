@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/gorilla/mux"
-	"github.com/victorsteven/fullstack/api/models"
+	"github.com/martinyonathann/fullstack/api/models"
 	"gopkg.in/go-playground/assert.v1"
 )
 
@@ -140,7 +140,7 @@ func TestGetPosts(t *testing.T) {
 		t.Errorf("this is the error: %v\n", err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(server.GetPosts)
+	handler := http.HandlerFunc(server.getPosts)
 	handler.ServeHTTP(rr, req)
 
 	var posts []models.Post
@@ -188,7 +188,7 @@ func TestGetPostByID(t *testing.T) {
 		req = mux.SetURLVars(req, map[string]string{"id": v.id})
 
 		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(server.GetPost)
+		handler := http.HandlerFunc(server.getPost)
 		handler.ServeHTTP(rr, req)
 
 		responseMap := make(map[string]interface{})
