@@ -8,8 +8,8 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
-	"github.com/victorsteven/fullstack/api/controllers"
-	"github.com/victorsteven/fullstack/api/models"
+	"github.com/martinyonathann/fullstack/api/controllers"
+	"github.com/martinyonathann/fullstack/api/models"
 )
 
 var server = controllers.Server{}
