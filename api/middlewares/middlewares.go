@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/martinyonathann/fullstack/api/auth"
-	"github.com/martinyonathann/fullstack/api/responses"
+	"github.com/martinyonathann/restapi_golang_postgres/api/auth"
+	"github.com/martinyonathann/restapi_golang_postgres/api/responses"
 )
 
 func SetMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc {

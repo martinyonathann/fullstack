@@ -9,10 +9,10 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/martinyonathann/fullstack/api/auth"
-	"github.com/martinyonathann/fullstack/api/models"
-	"github.com/martinyonathann/fullstack/api/responses"
-	"github.com/martinyonathann/fullstack/api/utils/formaterror"
+	"github.com/martinyonathann/restapi_golang_postgres/api/auth"
+	"github.com/martinyonathann/restapi_golang_postgres/api/models"
+	"github.com/martinyonathann/restapi_golang_postgres/api/responses"
+	"github.com/martinyonathann/restapi_golang_postgres/api/utils/formaterror"
 )
 
 //CreateUser for create User

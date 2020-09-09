@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/martinyonathann/fullstack/api/middlewares"
+import "github.com/martinyonathann/restapi_golang_postgres/api/middlewares"
 
 func (s *Server) initializeRoutes() {
 	//Home Route

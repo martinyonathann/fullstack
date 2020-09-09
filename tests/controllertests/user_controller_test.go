@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/gorilla/mux"
-	"github.com/martinyonathann/fullstack/api/models"
+	"github.com/martinyonathann/restapi_golang_postgres/api/models"
 	"gopkg.in/go-playground/assert.v1"
 )
 

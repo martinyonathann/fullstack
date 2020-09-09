@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/jinzhu/gorm"
-	"github.com/martinyonathann/fullstack/api/models"
+	"github.com/martinyonathann/restapi_golang_postgres/api/models"
 )
 
 var users = []models.User{
