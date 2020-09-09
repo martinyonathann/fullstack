@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"time"
 
-	gopher_and_rabbit "github.com/martinyonathann/restapi_golang_postgres"
+	restapi_golang_postgres "github.com/martinyonathann/restapi_golang_postgres/msgbroker"
 	"github.com/streadway/amqp"
 )
 
@@ -17,7 +17,7 @@ func handleError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial(gopher_and_rabbit.Config.AMQPConnectionURL)
+	conn, err := amqp.Dial(restapi_golang_postgres.Config.AMQPConnectionURL)
 	handleError(err, "Can't connect to AMQP")
 	defer conn.Close()
 
@@ -31,7 +31,7 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 
-	addTask := gopher_and_rabbit.AddTask{Number1: rand.Intn(999), Number2: rand.Intn(999)}
+	addTask := restapi_golang_postgres.AddTask{Number1: rand.Intn(999), Number2: rand.Intn(999)}
 	body, err := json.Marshal(addTask)
 	if err != nil {
 		handleError(err, "Error encoding JSON")

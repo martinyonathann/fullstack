@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	gopher_and_rabbit "github.com/martinyonathann/restapi_golang_postgres"
 	"github.com/streadway/amqp"
+	restapi_golang_postgres "github.com/martinyonathann/restapi_golang_postgres/msgbroker"
 )
 
 func handleError(err error, msg string) {
@@ -16,7 +16,7 @@ func handleError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial(gopher_and_rabbit.Config.AMQPConnectionURL)
+	conn, err := amqp.Dial(restapi_golang_postgres.Config.AMQPConnectionURL)
 	handleError(err, "Can't connect to AMQP")
 	defer conn.Close()
 
@@ -49,7 +49,7 @@ func main() {
 		for d := range messageChannel {
 			log.Printf("Received a message : %s", d.Body)
 
-			addTask := &gopher_and_rabbit.AddTask{}
+			addTask := &restapi_golang_postgres.AddTask{}
 
 			err := json.Unmarshal(d.Body, addTask)
 
