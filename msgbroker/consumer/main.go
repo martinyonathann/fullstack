@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	gopher_and_rabbit "github.com/martinyonathann/restapi_golang_postgres/messageBroker"
+	gopher_and_rabbit "github.com/martinyonathann/restapi_golang_postgres"
 	"github.com/streadway/amqp"
 )
 
