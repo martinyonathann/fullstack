@@ -2,7 +2,6 @@ package responses
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -12,10 +11,11 @@ func JSON(w http.ResponseWriter, statusCode int, data interface{}) {
 	w.WriteHeader(statusCode)
 	err := json.NewEncoder(w).Encode(data)
 	if err != nil {
-		fmt.Fprint(w, "%s", err.Error())
+		// fmt.Fprint(w, "%s", err.Error())
 	}
 }
 
+//Message for message error
 func Message(rc string, status bool, message string) map[string]interface{} {
 	var valueStatus string
 	if status == false {
@@ -27,6 +27,8 @@ func Message(rc string, status bool, message string) map[string]interface{} {
 	log.Printf("isi response : rc %s message %s ", rc, message)
 	return resp
 }
+
+//Respond for response json
 func Respond(w http.ResponseWriter, data map[string]interface{}) {
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
