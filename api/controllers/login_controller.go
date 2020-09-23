@@ -13,31 +13,57 @@ import (
 )
 
 func (server *Server) Login(w http.ResponseWriter, r *http.Request) {
+	// buf, bodyErr := ioutil.ReadAll(r.Body)
+	// if bodyErr != nil {
+	// 	log.Print("bodyErr ", bodyErr.Error())
+	// 	http.Error(w, bodyErr.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+	// rdr1 := ioutil.NopCloser(bytes.NewBuffer(buf))
+	// log.Printf("BODY: %q", rdr1)
+
+	response := make(map[string]interface{})
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		response = responses.Message("01", false, err.Error())
+		w.WriteHeader(http.StatusForbidden)
+		w.Header().Add("Content-Type", "application/json")
+		responses.Respond(w, response)
 		return
 	}
 	user := models.User{}
 	err = json.Unmarshal(body, &user)
 	if err != nil {
-		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		// responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		response = responses.Message("01", false, err.Error())
+		w.WriteHeader(http.StatusForbidden)
+		w.Header().Add("Content-Type", "application/json")
+		responses.Respond(w, response)
 		return
 	}
 	user.Prepare()
 	err = user.Validate("login")
 	if err != nil {
-		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		// responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		response = responses.Message("01", false, err.Error())
+		w.WriteHeader(http.StatusForbidden)
+		w.Header().Add("Content-Type", "application/json")
+		responses.Respond(w, response)
 		return
 	}
 	token, err := server.SignIn(user.Email, user.Password)
 	if err != nil {
 		formattedError := formaterror.FormatError(err.Error())
-		responses.ERROR(w, http.StatusUnprocessableEntity, formattedError)
+		// responses.ERROR(w, http.StatusUnprocessableEntity, formattedError)
+		response = responses.Message("01", false, formattedError.Error())
+		w.WriteHeader(http.StatusForbidden)
+		w.Header().Add("Content-Type", "application/json")
+		responses.Respond(w, response)
 		return
 	}
-	responses.JSON(w, http.StatusOK, token)
-
+	resp := map[string]interface{}{"rc": http.StatusOK, "detail": "Success", "message": "Success", "token": "Bearer " + token}
+	w.WriteHeader(http.StatusOK)
+	responses.Respond(w, resp)
 }
 func (server *Server) SignIn(email, password string) (string, error) {
 

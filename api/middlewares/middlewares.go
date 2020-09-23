@@ -1,7 +1,6 @@
 package middlewares
 
 import (
-	"errors"
 	"net/http"
 
 	"github.com/martinyonathann/restapi_golang_postgres/api/auth"
@@ -19,7 +18,10 @@ func SetMiddlewareAuthentication(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		err := auth.TokenValid(r)
 		if err != nil {
-			responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+			response := responses.Message("01", false, err.Error())
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Header().Add("Content-Type", "application/json")
+			responses.Respond(w, response)
 			return
 		}
 		next(w, r)

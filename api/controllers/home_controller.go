@@ -7,5 +7,9 @@ import (
 )
 
 func (server *Server) Home(w http.ResponseWriter, r *http.Request) {
-	responses.JSON(w, http.StatusOK, "Welcome to this awesome API")
+	response := responses.Message("00", true, "Welcome to this awesome API")
+	w.WriteHeader(http.StatusForbidden)
+	w.Header().Add("Content-Type", "application/json")
+	responses.Respond(w, response)
+	return
 }
