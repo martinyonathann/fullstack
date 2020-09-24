@@ -1,9 +1,9 @@
 package main
 
-import (
-	"github.com/martinyonathann/restapi_golang_postgres/api"
-)
+// import (
+// 	"github.com/martinyonathann/restapi_golang_postgres/api"
+// )
 
-func main() {
-	api.Run()
-}
+// func main() {
+// 	api.Run()
+// }
